@@ -1,6 +1,6 @@
 #tree using array
 import numpy as np
-tree=np.zeros(11,dtype="int16")
+tree=np.zeros(100,dtype="int16")
 def insert(element):
     n=0
     while tree[n]!=0:
