@@ -1,6 +1,6 @@
 #tree using array
 import numpy as np
-tree=np.zeros(11,dtype="int16")
+tree=np.zeros(100,dtype="int16")
 def insert(element):
     n=0
     while tree[n]!=0:
@@ -12,21 +12,30 @@ def insert(element):
 def preorder(root):
     if root>=len(tree):
         return
-    print(tree[root])
+    if tree[root]==0:
+        pass
+    else:
+        print(tree[root])
     preorder((2*root)+1)
     preorder((2*root)+2)
 def inorder(root):
     if root>=len(tree):
         return
     inorder((2*root)+1)
-    print(tree[root])
+    if tree[root]==0:
+        pass
+    else:
+        print(tree[root])
     inorder((2*root)+2)
 def postorder(root):
     if root>=len(tree):
         return
     postorder((2*root)+1)
     postorder((2*root)+2)
-    print(tree[root])
+    if tree[root]==0:
+        pass
+    else:
+        print(tree[root])
     
 
 
@@ -38,7 +47,7 @@ insert(18)
 insert(40)
 insert(38)
 insert(45)
-insert(90)
+insert(9)
 insert(67)
 insert(99)
 print(tree)
