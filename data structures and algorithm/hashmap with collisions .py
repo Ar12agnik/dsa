@@ -1,6 +1,3 @@
-from typing import Any
-
-
 class HashTable:
     def __init__(self) -> None:
         self.max=100
