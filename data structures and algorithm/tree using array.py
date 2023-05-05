@@ -10,32 +10,24 @@ def insert(element):
             n=(2*n)+2
     tree[n]=element
 def preorder(root):
-    if root>=len(tree):
-        return
     if tree[root]==0:
-        pass
+        return
     else:
         print(tree[root])
     preorder((2*root)+1)
     preorder((2*root)+2)
 def inorder(root):
-    if root>=len(tree):
+    if tree[root]==0:
         return
     inorder((2*root)+1)
-    if tree[root]==0:
-        pass
-    else:
-        print(tree[root])
+    print(tree[root])
     inorder((2*root)+2)
 def postorder(root):
-    if root>=len(tree):
+    if tree[root]==0:
         return
     postorder((2*root)+1)
     postorder((2*root)+2)
-    if tree[root]==0:
-        pass
-    else:
-        print(tree[root])
+    print(tree[root])
     
 
 
