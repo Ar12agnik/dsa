@@ -15,8 +15,10 @@ def isFull():
     else:
         return False
 def printDEQueue():
-    for i in DEqueue:
-        print(i)
+    global rear 
+    global front 
+    for i in range(front,rear):
+        print(DEqueue[i])
 def enqueueRear(element):
     global rear 
     if isFull():
@@ -24,4 +26,26 @@ def enqueueRear(element):
     else:
         rear+=1
         DEqueue[rear]=element
-#TODO:complete the code
+def dequeuefront():
+    global front 
+    if isEmpty():
+        print("underflow:please add something to the queue before you remove any element!!")
+    else:
+        print(DEqueue[front],"deleted!")
+        front+=1
+def dequeuerear():
+    global rear 
+    if isEmpty():
+        print("underflow:please add something to the queue before you remove any element!!")
+    else:
+        print(DEqueue[rear],"deleted!")
+        rear-=1
+def enqueuefront(element):
+    global front 
+    if front <=0:
+        print("overflow: please delete atleast one element from front  to insert another one in the front")
+    else:
+        front-=1
+        DEqueue[front]=element
+#TODO:call the nessesory functions
+
