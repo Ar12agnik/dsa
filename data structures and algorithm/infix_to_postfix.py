@@ -1,55 +1,34 @@
-class stack:
-    def __init__(self) -> None:
-        self.stack=[]
-        self.top=-1
-    def push(self,element):
-        self.stack.append(element)
-        self.top+=1
-    def pop(self):
-        try:
-            self.top-=1
-            return self.stack.pop()
-        except:
-            return None
-    def access_element_at_top(self):
-        return self.stack[-1]
-    def isempty(self):
-        if self.top==-1:
-            return True
-        else:
-            return False
-alpha=['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
-precedence = {
-    '(': 1,
-    '{': 1,
-    '[': 1,
-    '^': 2,
-    '*': 3,
-    '/': 3,
-    '+': 4,
-    '-': 4
-}
-stack=stack()
-expression=input("enter the expression: ")
-output_exp=''
-for i in expression:
-    if i.lower() in alpha:
-        output_exp+=i
-    else:
-        if stack.isempty():
-            stack.push((i,precedence[i]))
-        elif i==')':
-            while stack.access_element_at_top()[0]!='(':
-                output_exp+=stack.pop()
-            print(stack.stack)
-            output_exp+=stack.pop()
-        elif precedence[i]<stack.access_element_at_top()[1]:
-            stack.push((i,precedence[i]))
-        elif precedence[i]>=stack.access_element_at_top()[1]:
-            while precedence[i]>=stack.access_element_at_top()[1]:
-                if stack.isempty()!=True:
-                    output_exp+=stack.pop()[0]
-                else:
-                    break
-    print(output_exp)
-    #DO IT LATER!!!
+def infix_to_postfix(expr):
+    precedence = {'+': 1, '-': 1, '*': 2, '/': 2, '^': 3}
+    
+    stack = []
+    output = []
+    
+    tokens = expr.split()
+    for token in tokens:
+        if token.isalpha():
+            
+            output.append(token)
+        elif token in precedence:
+            
+            while stack and stack[-1] != '(' and precedence[token] <= precedence.get(stack[-1], 0):
+                output.append(stack.pop())
+            
+            stack.append(token)
+        elif token == '(':
+            
+            stack.append(token)
+        elif token == ')':
+            
+            while stack and stack[-1] != '(':
+                output.append(stack.pop())
+            
+            stack.pop()
+    
+    while stack:
+        output.append(stack.pop())
+    
+    return ' '.join(output)
+expr = "a + b * c / ( d - a ) ^ c"
+postfix = infix_to_postfix(expr)
+print(postfix)  
