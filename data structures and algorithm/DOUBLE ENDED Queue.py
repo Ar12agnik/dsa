@@ -66,4 +66,4 @@ while True:
     elif n==6:
         break
     else:
-        print("invalid input!")
+        print("invalid input!! Try again")
